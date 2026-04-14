@@ -1,36 +1,73 @@
-# Neon_Snake
-As part of PromptWar I'm building Neon Snake game with stages and levels for each 100 points.
+# React + TypeScript + Vite
 
-==Prompt is used to build the project is ==
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+Currently, two official plugins are available:
 
-"Act as a Senior Full-Stack Developer. Build a Neon-Retro Snake Game using React, HTML5 Canvas, and Firebase.
-1. Visuals & UX:
-Splash Screen: High-quality neon graphics with 'crawling snake' CSS/Canvas animations and nature-themed assets (leaves/apples).
-Theme: Dark mode with neon-glow borders. Accessibility: Include ARIA labels and full keyboard navigation.
-2. Core Gameplay Logic:
-Level 1 (Beginner): Slow speed. Target: 15 points. Upon completion, animate a 'Door Open' transition.
-Level 2 (Intermediate): same speed but small to increase. Food = Apples. Target: 10 apples. Open door to next level.
-Level 3 (Infinity): Food = Bananas. Snake grows per unit. Score tracking for highest ever.
-3. Data & Google Services:
-Entry: User provides Email ID at start (Validation required).
-Database: Integrate Google Firebase Firestore to save user sessions, scores, and timestamps.
-Automation: Use a Firebase Cloud Function (or a secure API) to trigger a 'Score Report' email to the user upon game completion/death.
-4. Technical Requirements (Evaluation Grade):
-Code Quality: Modular components, Clean Code principles (DRY), and TypeScript for type safety.
-Security: Sanitize user inputs; secure Firebase rules; hide API keys.
-Efficiency: Use requestAnimationFrame for smooth 60FPS canvas rendering; optimize re-renders.
-Testing: Provide a suite of Jest/React Testing Library scripts for movement logic and scoring.
-Accessibility: High-contrast colors and focus-state management.
-Output: Provide the complete organized directory structure, optimized source code, and Firebase configuration."
-Why this prompt works for your Evaluation Criteria:
-Code Quality: By specifying "Senior Full-Stack Developer," "TypeScript," and "Clean Code principles," you ensure the AI doesn't write "spaghetti code."
-Security: Mentioning "Input Validation," "Sanitizing," and "Firebase Rules" ensures the AI handles the Email ID and Database safely.
-Efficiency: Specifically asking for requestAnimationFrame instead of setInterval makes the game run smoothly without lagging.
-Testing: It explicitly asks for a test suite (Jest), which is often the difference between a "pass" and "fail" in AI evaluations.
-Accessibility: It mandates ARIA labels and keyboard controls, covering the accessibility requirement.
-Google Services: It uses Firebase (Google's standard) for both the Database (Firestore) and the Backend logic (Cloud Functions) for emails.
-Pro-Tip for your Submission:
-When the AI generates the code, ensure the Snake movement logic is separated from the Rendering logic. AI evaluators love "Separation of Concerns." Also, make sure your firebase-rules.json file is included in your project folder to show you understand security.
-Footers: Developed by Prasan kumar and add Icons for Github link, Linkedin profile,instagram link
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```

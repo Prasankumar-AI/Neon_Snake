@@ -1,0 +1,61 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+/* Door Transition Animation */
+.door-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.door-left, .door-right {
+  width: 50%;
+  height: 100%;
+  background: var(--dark-bg);
+  border-right: 2px solid var(--neon-blue);
+  box-shadow: 0 0 20px var(--neon-blue);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.door-right {
+  border-left: 2px solid var(--neon-blue);
+  border-right: none;
+}
+
+.door-transition.open .door-left {
+  transform: translateX(-100%);
+}
+
+.door-transition.open .door-right {
+  transform: translateX(100%);
+}
+
+.door-transition.closed .door-left {
+  transform: translateX(0);
+}
+
+.door-transition.closed .door-right {
+  transform: translateX(0);
+}
